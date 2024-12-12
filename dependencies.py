@@ -5,3 +5,7 @@ def load_model(model_path: str):
 
     global model
     model = joblib.load(model_path)
+
+def get_model():
+    global model
+    return model

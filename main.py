@@ -6,6 +6,7 @@ from sqlmodel import SQLModel
 from config import config
 from database import engine
 from dependencies import load_model
+from api import router
 
 
 @asynccontextmanager
@@ -21,6 +22,7 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(lifespan=lifespan)
+app.include_router(router)
 
 @app.get('/')
 def root():
