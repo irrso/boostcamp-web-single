@@ -2,7 +2,8 @@ from fastapi import APIRouter
 from schemas import PredictionRequest, PredictionResponse
 from dependencies import get_model
 from database import PredictionResult, engine
-from sqlmodel import Session
+from sqlmodel import Session, select
+from typing import List
 
 
 router = APIRouter()
@@ -25,3 +26,15 @@ def predict(request: PredictionRequest) -> PredictionResponse:
     
     # return PredictResponse
     return PredictionResponse(id=prediction_result.id, result=prediction)
+
+@ router.get('/predict')
+def get_predictions() -> List[PredictionResponse]:
+    with Session(engine) as session:
+        statement = select(PredictionResult)
+        prediction_results = session.exec(statement).all()
+        # prediction_results = session.query(PredictionResult).all()
+
+        return[
+            PredictionResponse(id=prediction_result.id, result=prediction_result.result)
+            for prediction_result in prediction_results
+        ]
