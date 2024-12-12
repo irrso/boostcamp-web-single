@@ -31,11 +31,11 @@
 - FIXME : FIXME
 
 # 기능 구현
-- [ ] : FastAPI 서버 만들기
+- [x] : FastAPI 서버 만들기
   - [x] : POST /predict : 예측을 진행한 후(PredictionRequest), PredictionResponse 반환
     - [x] : Response를 저장, CSV, JSON. 데이터베이스에 저장(SQLModel)
   - [x] : GET /predict : 데이터베이스에 저장된 모든 PredictionResponse 반환
-  - [ ] : GET /predict/{id}: id로 필터링해서, 해당 id에 맞는 PredictionResponse 반환
+  - [x] : GET /predict/{id}: id로 필터링해서, 해당 id에 맞는 PredictionResponse 반환
 - [x] : FastAPI가 띄워질 때, Model Load -> lifespan
 - [x] : DB 객체 만들기
 - [x] : Config 설정
@@ -75,3 +75,11 @@ with Session(engine) as session:
 
 # SQLite3
 - 가볍게 사용할 수 있는 데이터베이스. 프러덕션 용도가 아닌 학습용
+
+# 현업에서 더 고려해야 하는 부분
+- Dev, Prod 구분에 따라 어떻게 구현할 것인가?
+- Data Input / Output 고려
+- Database -> Cloud Database(AWS Aurora, GCP Cloud SQL)
+- API 서버 모니터링
+- API 부하 테스트
+- Test Code

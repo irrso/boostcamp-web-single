@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, status
 from schemas import PredictionRequest, PredictionResponse
 from dependencies import get_model
 from database import PredictionResult, engine
@@ -38,3 +38,15 @@ def get_predictions() -> List[PredictionResponse]:
             PredictionResponse(id=prediction_result.id, result=prediction_result.result)
             for prediction_result in prediction_results
         ]
+
+@ router.get('/predict/{id}')
+def get_prediction(id: int) -> PredictionResponse:
+    with Session(engine) as session:
+        prediction_result = session.get(PredictionResult, id)
+        if not prediction_result:
+            raise HTTPException(
+                detail='Not found', status_code=status.HTTP_404_NOT_FOUND
+            )
+        return PredictionResponse(
+            id = prediction_result.id, result = prediction_result.result
+            )

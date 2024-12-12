@@ -33,3 +33,5 @@ if __name__ == '__main__':
     import uvicorn
 
     uvicorn.run(app, host='0.0.0.0', port=8000)
+    # 코드가 변경되면 자동으로 FastAPI Load
+    # uvicorn.run('main:app', host='0.0.0.0', port=8000)
