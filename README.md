@@ -36,9 +36,9 @@
   - [ ] : Response를 저장, CSV, JSON. 데이터베이스에 저장(SQLModel)
 - [ ] : GET /predict : 데이터베이스에 저장된 모든 PredictResponse 반환
 - [ ] : GET /predict/{id}: id로 필터링해서, 해당 id에 맞는 PredictResponse 반환
-- [ ] : FastAPI가 띄워질 때, Model Load -> lifespan
-- [ ] : DB 객체 만들기
-- [ ] : Config 설정
+- [x] : FastAPI가 띄워질 때, Model Load -> lifespan
+- [x] : DB 객체 만들기
+- [x] : Config 설정
 
 # 참고
 - 데이터베이스는 SQLite3, 라이브러리는 SQLModel 사용
